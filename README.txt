@@ -102,10 +102,54 @@ Learned how to access admin dashboard to navigate/edit the database.
 ----------
 Part IV:
 ------------------------------
+Added home route to urls.py and created home function in views.py
 
+Created folder called templates under main, followed by a folder withing templates called main
+
+Created base.html and home.html
+
+Added name value to index and home functions to display on html pages
+
+Added content block to base.html and used it in home.html
+
+Removed variable name in index and home functions
+
+Add list.html and content from list in index function
+
+Change index to render list.html
+
+Added items to list via 'python3 manage.py shell':
+>>> from  main.models import ToDoList
+>>> ls = ToDoList.objects.get(id=2)
+>>> ls
+<ToDoList: First list>
+>>> ls.item_set.all()
+<QuerySet []>
+>>> ls.item_set.create(text="First Item", complete=False)
+<Item: First Item>
+>>> ls.item_set.create(text="Second Item", complete=False)
+<Item: Second Item>
+>>> ls.item_set.create(text="Third Item", complete=False)
+<Item: Third Item>
+
+Can now view list on site
+
+Added if statement in list.html to only show incomplete items
+
+Added completed items to list via 'python3 manage.py shell':
+>>> from  main.models import ToDoList
+>>> ls = ToDoList.objects.get(id=2)
+>>> ls
+<ToDoList: First list>
+>>> ls.item_set.create(text="Not Showing", complete=True)
+<Item: Not Showing>
+>>> ls.item_set.all()
+<QuerySet [<Item: First Item>, <Item: Second Item>, <Item: Third Item>, <Item: Not Showing>]>
+
+Extended if statement in list.html to change color for completed items
 
 SUMMARY:
-
+Added items to DB via the shell and created html files as templates.  Within list.html we used blocks that are inherited from base.html and used python code to display data from the list that has an id matching the number in the url.
 ------------------------------
 
 ----------
