@@ -68,10 +68,35 @@ DB was created by adding models and performing migrations.  Items were added to 
 ----------
 Part III:
 ------------------------------
+Modified DB ('python34 manage.py shell')
+>>> from main.models import Item, ToDoList
+>>> t = ToDoList.objects
+>>> t.all()
+<QuerySet [<ToDoList: Anth's List>]>
+>>> t.filter(name__startswith="Anth")
+<QuerySet [<ToDoList: Anth's List>]>
+>>> t.filter(name__startswith="Bob")
+<QuerySet []>
+>>> del_object = t.get(id=1)
+>>> del_object.delete()
+(2, {'main.Item': 1, 'main.ToDoList': 1})
+>>> t.all()
+<QuerySet []>
+>>> t1 = ToDoList(name="First list")
+>>> t2 = ToDoList(name="Second list")
+>>> t1.save()
+>>> t2.save()
+>>> t.all()
+<QuerySet [<ToDoList: First list>, <ToDoList: Second list>]>
 
+'python3 manage.py createsuperuser'
+
+Ran server and logged in to url/admin
+
+Added import of model in 'admin.py' so that it appears in admin dashboard
 
 SUMMARY:
-
+Learned how to access admin dashboard to navigate/edit the database.
 ------------------------------
 
 ----------
